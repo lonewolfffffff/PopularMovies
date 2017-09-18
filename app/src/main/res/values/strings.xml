@@ -7,6 +7,9 @@
 
     <string name="sort_by_popular">Most popular</string>
     <string name="sort_by_top_rated">Highest rated</string>
+    <string name="sort_by_favorites">Favorites</string>
 
+    <string name="trailer_list_heading">Trailers :</string>
+    <string name="review_list_heading">Reviews :</string>
 
 </resources>

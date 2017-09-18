@@ -1,9 +1,10 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.view.View;
 
+import com.example.android.popularmovies.AsyncTaskListener;
+import com.example.android.popularmovies.models.Movie;
 import com.example.android.popularmovies.utilities.MovieJsonUtils;
 import com.example.android.popularmovies.utilities.NetworkUtils;
 

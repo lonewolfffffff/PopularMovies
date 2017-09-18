@@ -2,7 +2,6 @@ package com.example.android.popularmovies.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,19 +15,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.popularmovies.AsyncTaskListener;
-import com.example.android.popularmovies.FetchMovieTask;
-import com.example.android.popularmovies.Movie;
+import com.example.android.popularmovies.tasks.FetchMovieTask;
+import com.example.android.popularmovies.models.Movie;
 import com.example.android.popularmovies.adapters.MovieAdapter;
 import com.example.android.popularmovies.adapters.MovieAdapter.MovieAdapterOnClickHandler;
 import com.example.android.popularmovies.R;
-
-import java.net.URL;
+import com.example.android.popularmovies.utilities.NetworkUtils;
 
 public class MainActivity extends AppCompatActivity implements MovieAdapterOnClickHandler {
     private static final String TAG = "MainActivity";
-
-    final static String TMDB_POPULAR_MOVIE = "/movie/popular";
-    final static String TMDB_TOP_RATED_MOVIE = "/movie/top_rated";
 
     private RecyclerView mRecyclerView;
     private MovieAdapter mMovieAdapter;
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         GridLayoutManager layoutManager = new GridLayoutManager(this, numberOfColumns());
         mRecyclerView.setLayoutManager(layoutManager);
 
-        loadMovieData(TMDB_POPULAR_MOVIE);
+        loadMovieData(NetworkUtils.TMDB_POPULAR_MOVIE);
     }
 
     private int numberOfColumns() {
@@ -130,10 +125,13 @@ public class MainActivity extends AppCompatActivity implements MovieAdapterOnCli
         item.setChecked(true);
         switch(id) {
             case R.id.sort_by_popular:
-                loadMovieData(TMDB_POPULAR_MOVIE);
+                loadMovieData(NetworkUtils.TMDB_POPULAR_MOVIE);
                 break;
             case R.id.sort_by_top_rated:
-                loadMovieData(TMDB_TOP_RATED_MOVIE);
+                loadMovieData(NetworkUtils.TMDB_TOP_RATED_MOVIE);
+                break;
+            case R.id.sort_by_favorites:
+                // TODO : load from SQLite
                 break;
         }
 

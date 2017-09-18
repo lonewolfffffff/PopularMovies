@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.android.popularmovies.Movie;
+import com.example.android.popularmovies.models.Movie;
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.utilities.NetworkUtils;
 import com.squareup.picasso.Picasso;
@@ -19,7 +19,6 @@ import com.squareup.picasso.Picasso;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
     private static final String TAG = "MovieAdapter";
-    private static final String TMDB_IMAGE_THUMB_SIZE = "w185";
 
     private Movie[] mMovieData;
     private final MovieAdapterOnClickHandler mClickHandler;
@@ -49,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         Context context = movieAdapterViewHolder.mMoviePoster.getContext();
         Picasso.with(context)
-                .load(NetworkUtils.TMDB_IMAGE_BASE_URL + TMDB_IMAGE_THUMB_SIZE + movie.posterPath)
+                .load(NetworkUtils.TMDB_IMAGE_BASE_URL + NetworkUtils.TMDB_IMAGE_THUMB_SIZE + movie.posterPath)
                 .placeholder(R.drawable.movie_poster_loading_placeholder)
                 .error(R.drawable.movie_poster_not_found_error)
                 .into(movieAdapterViewHolder.mMoviePoster);
